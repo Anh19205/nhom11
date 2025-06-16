@@ -1,0 +1,141 @@
+/* === [1] Thiết lập chung cho toàn bộ trang === */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  overflow-x: auto; /* Cho phép cuộn ngang nếu nội dung bị tràn */
+}
+
+/* === [2] Khung chứa toàn bộ CV (A4) === */
+.container {
+  display: flex;
+  width: 210mm;            /* Chiều rộng tương đương giấy A4 */
+  min-height: 297mm;       /* Chiều cao tối thiểu như A4 để chuẩn in */
+  margin: 0 auto;          /* Căn giữa ngang */
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+  transition: transform 0.3s ease-in-out;  /* Hiệu ứng khi thu nhỏ */
+}
+
+/* === [3] Thanh bên trái (Sidebar) === */
+.sidebar {
+  width: 30%;
+  padding: 20px;
+  background-color: #1d7186;
+  color: white;
+}
+
+/* Tiêu đề trong sidebar */
+.sidebar h2 {
+  margin-top: 20px;
+  font-size: 18px;
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
+}
+
+/* Danh sách không có chấm đầu dòng */
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Mỗi mục thông tin trong danh sách */
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+/* === [4] Ảnh đại diện cá nhân === */
+.avatar {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;      /* Giữ tỉ lệ, cắt phần thừa */
+  object-position: top;   /* Hiển thị phần đầu ảnh */
+  display: block;
+  margin: 0 auto 20px;
+}
+
+/* === [5] Nội dung chính bên phải === */
+.main-content {
+  width: 70%;
+  padding: 30px;
+}
+
+/* Tên cá nhân lớn ở đầu CV */
+.main-content h1 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 30px;
+}
+
+/* Khoảng cách giữa các section */
+.main-content section {
+  margin-top: 20px;
+}
+
+/* Tiêu đề section */
+.main-content section h2 {
+  font-size: 18px;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+}
+
+/* === [6] Định dạng liên kết (link) === */
+a {
+  color: #289cd6;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* === [7] Responsive: Khi màn hình nhỏ (tablet trở xuống) === */
+@media (max-width: 768px) {
+  .container {
+    transform: scale(0.8);        /* Thu nhỏ toàn bộ CV để vừa màn hình */
+    transform-origin: top left;   /* Điểm neo là góc trên trái */
+  }
+}
+
+/* === [8] In ấn: Định dạng in ra giấy A4 === */
+@media print {
+  body {
+    margin: 0;
+    background: none;
+  }
+
+  .container {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 0;
+    box-shadow: none; /* Bỏ bóng khi in */
+  }
+
+  .sidebar {
+    width: 30%;
+    padding: 10mm;
+  }
+
+  .main-content {
+    width: 70%;
+    padding: 10mm;
+  }
+
+  .avatar {
+    max-width: 100px; /* Giảm kích thước ảnh để in gọn */
+  }
+
+  a {
+    color: #000; /* In link màu đen để dễ đọc */
+    text-decoration: none;
+  }
+
+  /* Tránh bị ngắt trang giữa các khối */
+  .container,
+  .sidebar,
+  .main-content {
+    page-break-inside: avoid;
+  }
+}
